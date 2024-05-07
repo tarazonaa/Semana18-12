@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block content %}
+<button class="" hx-get="/clicked" hx-swap="outerHTML">
+  Click me
+</button>
+{% endblock content %}
