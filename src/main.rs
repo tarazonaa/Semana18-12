@@ -1,5 +1,5 @@
 use actix_web::{
-    get,
+    get, post,
     web::{self, ServiceConfig},
     HttpRequest, HttpResponse, Responder,
 };
@@ -28,6 +28,12 @@ async fn inventario(req: HttpRequest, data: web::Data<AppState>) -> impl Respond
     HttpResponse::Ok().body(rendered)
 }
 
+#[post("/testpost")]
+async fn testpost() -> impl Responder {
+    let response = "<h1>Test Post</h1>";
+    HttpResponse::Ok().body(response)
+}
+
 #[get("/clicked")]
 async fn clicked() -> impl Responder {
     let response = "<h1>Clicked</h1>";
@@ -46,7 +52,8 @@ async fn main() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clon
         cfg.app_data(app_state.clone())
             .service(index)
             .service(inventario)
-            .service(clicked);
+            .service(clicked)
+            .service(testpost);
     };
 
     Ok(config.into())

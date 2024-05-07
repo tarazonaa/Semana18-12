@@ -6,7 +6,12 @@
 
 
 {% block content %}
-<button class="" hx-get="/clicked" hx-swap="outerHTML">
-  Click me
+<h1 class="text-2xl self-center">{{ title }}</h1>
+<button class="bg-blue-300 p-4 rounded-md text-white" hx-get="/clicked" hx-swap="innerHTML">
+  <span>Click me!</span>
 </button>
+<button class="bg-blue-300 p-4 rounded-md text-white" hx-post="/testpost" hx-target="#response-test">
+  Click me too! 
+</button>
+<div class="bg-blue-400 p-4 w-36 rounded-md text-white" id="response-test"></div>
 {% endblock content %}
