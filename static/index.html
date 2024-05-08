@@ -6,12 +6,22 @@
 
 
 {% block content %}
+<div class="flex mx-auto flex-col space-y-10 w-full">
+  <div class="flex flex-col mx-auto space-y-4 w-full">
 <h1 class="text-2xl self-center">{{ title }}</h1>
-<button class="bg-blue-300 p-4 rounded-md text-white" hx-get="/clicked" hx-swap="innerHTML">
-  <span>Click me!</span>
+</div>
+<div class="flex flex-col mx-auto space-y-4 w-96">
+<button class="bg-blue-300 p-4 rounded-md text-white" hx-get="/new_product" hx-swap="outerHTML">
+  New Product
 </button>
-<button class="bg-blue-300 p-4 rounded-md text-white" hx-post="/testpost" hx-target="#response-test">
-  Click me too! 
+<button class="bg-blue-300 p-4 rounded-md text-white" hx-post="/test_stream" hx-trigger="load, every 2s" hx-target="#response-test">
+  Datastream
 </button>
-<div class="bg-blue-400 p-4 w-36 rounded-md text-white" id="response-test"></div>
+<div class="bg-blue-400 p-4 text-center w-full rounded-md text-white" id="response-test"></div>
+</div>
+<div class="flex flex-col mx-auto space-y-4 w-full">
+  <h1 class="text-2xl self-center">Products</h1>
+  <div class="flex flex-col mx-auto space-y-4 w-full" hx-trigger="load" hx-get="/products">
+  </div>
+</div>
 {% endblock content %}
